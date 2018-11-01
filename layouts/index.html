@@ -8,6 +8,22 @@
                 </div>
             {{ end }}
 
+            <div class="projects">
+                {{ $nbPosts := len (where .Data.Pages "Section" "projects") }}
+                {{ if gt $nbPosts 0 }}
+                    <div class="page-heading">Projects</div>
+                    <ul>
+                    {{ range (first .Site.Params.latestpostcount (where .Pages "Section" "projects")) "desc" }}
+                        {{ partial "li.html" . }}
+                    {{ end }}
+                    </ul>
+
+                    {{ if gt $nbPosts .Site.Params.latestpostcount }}
+                        <a href="./blog/" class="see-more">See more ...</a>
+                    {{ end }}
+                {{ end }}
+            </div>
+
             {{ if isset .Site.Params "latestpostcount" }}
                 <div class="posts">
                 {{ $nbPosts := len (where .Data.Pages "Section" "blog") }}
