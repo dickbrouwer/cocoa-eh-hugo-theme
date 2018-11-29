@@ -151,10 +151,10 @@ div.header .content {
   -moz-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-align-items: center;
+  /* -webkit-align-items: center;
   -moz-align-items: center;
   -ms-align-items: center;
-  align-items: center;
+  align-items: center; */
 }
 div.header .container .logo {
   {{ if .Site.Params.enlarged }}
@@ -163,6 +163,7 @@ div.header .container .logo {
   max-width: 100px;
   {{ end }}
   margin-left: -2em;
+  margin-right: 10px;
 }
 div.header .name {
   padding-top: 20px;
