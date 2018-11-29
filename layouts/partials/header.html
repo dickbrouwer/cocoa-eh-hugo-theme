@@ -22,6 +22,33 @@
                     {{ if (and (ne (len (where .Site.RegularPages "Section" "blog")) 0) (not (in .Site.Params.exclude_headings "blog"))) }}
                             <li><a href="{{ .Site.BaseURL }}blog/">Blog</a></li>
                     {{ end }}
+
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.main }}
+                        {{ if .HasChildren }}
+                            <li class="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}">
+                                <a href="#">
+                                    {{ .Pre }}
+                                    <span>{{ .Name }}</span>
+                                </a>
+                            </li>
+                            <ul class="sub-menu">
+                                {{ range .Children }}
+                                    <li class="{{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}">
+                                        <a href="{{ .URL }}">{{ .Name }}</a>
+                                    </li>
+                                {{ end }}
+                            </ul>
+                            {{ else }}
+                            <li>
+                                <a href="{{ .URL }}">
+                                    {{ .Pre }}
+                                    <span>{{ .Name }}</span>
+                                </a>
+                            </li>
+                        {{ end }}
+                    {{ end }}
+
                     {{ range $.Site.Home.Sections }}
                         {{ range first 1 (where .Pages "Section" "ne" "")}}
                             {{ if (and (ne .Section "blog") (not (in .Site.Params.exclude_headings (lower .Section))))}}
