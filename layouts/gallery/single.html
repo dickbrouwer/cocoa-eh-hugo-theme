@@ -1,0 +1,13 @@
+{{ partial "header.html" . }}
+<style>
+    {{ partial "css/photography.css" . | safeCSS }}
+</style>
+
+<div class="description">
+    {{ .Description }}
+</div>
+
+<div class="gallery masonry">
+    {{ .Content }}
+</div>
+{{ partial "footer.html" . }}
